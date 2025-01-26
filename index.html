@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         html, body, #map {
@@ -36,12 +35,12 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="js/leaflet-search.js"></script>
-        <script src="data/Gbargna_all_community_1.js"></script>
+        <script src="data/Final_1.js"></script>
+        <script src="data/Gbargna_all_community_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[6.966782895798543,-9.519163323859019],[7.046792631545297,-9.408680552207798]]);
+        }).fitBounds([[6.992522094924003,-9.488210633653136],[7.0134145536822965,-9.449793246274087]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -102,7 +101,80 @@
         });
         layer_GoogleSatellite_0;
         map.addLayer(layer_GoogleSatellite_0);
-        function pop_Gbargna_all_community_1(feature, layer) {
+        function pop_Final_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['left'] !== null ? autolinker.link(feature.properties['left'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['top'] !== null ? autolinker.link(feature.properties['top'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['right'] !== null ? autolinker.link(feature.properties['right'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bottom'] !== null ? autolinker.link(feature.properties['bottom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['row_index'] !== null ? autolinker.link(feature.properties['row_index'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['col_index'] !== null ? autolinker.link(feature.properties['col_index'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['col'] !== null ? autolinker.link(feature.properties['col'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['row'] !== null ? autolinker.link(feature.properties['row'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['let'] !== null ? autolinker.link(feature.properties['let'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['g_id'] !== null ? autolinker.link(feature.properties['g_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Final_1_0() {
+            return {
+                pane: 'pane_Final_1',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Final_1');
+        map.getPane('pane_Final_1').style.zIndex = 401;
+        map.getPane('pane_Final_1').style['mix-blend-mode'] = 'normal';
+        var layer_Final_1 = new L.geoJson(json_Final_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Final_1',
+            layerName: 'layer_Final_1',
+            pane: 'pane_Final_1',
+            onEachFeature: pop_Final_1,
+            style: style_Final_1_0,
+        });
+        bounds_group.addLayer(layer_Final_1);
+        map.addLayer(layer_Final_1);
+        function pop_Gbargna_all_community_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">County</th>\
@@ -132,11 +204,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Gbargna_all_community_1_0(feature) {
+        function style_Gbargna_all_community_2_0(feature) {
             switch(String(feature.properties['Cluster Name'])) {
                 case 'A':
                     return {
-                pane: 'pane_Gbargna_all_community_1',
+                pane: 'pane_Gbargna_all_community_2',
                 opacity: 1,
                 color: 'rgba(255,127,0,1.0)',
                 dashArray: '',
@@ -149,7 +221,7 @@
                     break;
                 case 'B':
                     return {
-                pane: 'pane_Gbargna_all_community_1',
+                pane: 'pane_Gbargna_all_community_2',
                 opacity: 1,
                 color: 'rgba(120,255,194,1.0)',
                 dashArray: '',
@@ -162,7 +234,7 @@
                     break;
                 case 'C':
                     return {
-                pane: 'pane_Gbargna_all_community_1',
+                pane: 'pane_Gbargna_all_community_2',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -175,7 +247,7 @@
                     break;
                 case 'D':
                     return {
-                pane: 'pane_Gbargna_all_community_1',
+                pane: 'pane_Gbargna_all_community_2',
                 opacity: 1,
                 color: 'rgba(154,109,213,1.0)',
                 dashArray: '',
@@ -188,20 +260,20 @@
                     break;
             }
         }
-        map.createPane('pane_Gbargna_all_community_1');
-        map.getPane('pane_Gbargna_all_community_1').style.zIndex = 401;
-        map.getPane('pane_Gbargna_all_community_1').style['mix-blend-mode'] = 'normal';
-        var layer_Gbargna_all_community_1 = new L.geoJson(json_Gbargna_all_community_1, {
+        map.createPane('pane_Gbargna_all_community_2');
+        map.getPane('pane_Gbargna_all_community_2').style.zIndex = 402;
+        map.getPane('pane_Gbargna_all_community_2').style['mix-blend-mode'] = 'normal';
+        var layer_Gbargna_all_community_2 = new L.geoJson(json_Gbargna_all_community_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Gbargna_all_community_1',
-            layerName: 'layer_Gbargna_all_community_1',
-            pane: 'pane_Gbargna_all_community_1',
-            onEachFeature: pop_Gbargna_all_community_1,
-            style: style_Gbargna_all_community_1_0,
+            dataVar: 'json_Gbargna_all_community_2',
+            layerName: 'layer_Gbargna_all_community_2',
+            pane: 'pane_Gbargna_all_community_2',
+            onEachFeature: pop_Gbargna_all_community_2,
+            style: style_Gbargna_all_community_2_0,
         });
-        bounds_group.addLayer(layer_Gbargna_all_community_1);
-        map.addLayer(layer_Gbargna_all_community_1);
+        bounds_group.addLayer(layer_Gbargna_all_community_2);
+        map.addLayer(layer_Gbargna_all_community_2);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -213,22 +285,28 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         setBounds();
-        map.addControl(new L.Control.Search({
-            layer: layer_Gbargna_all_community_1,
-            initial: false,
-            hideMarkerOnCollapse: true,
-            propertyName: 'Community Name'}));
-        document.getElementsByClassName('search-button')[0].className +=
-         ' fa fa-binoculars';
-        resetLabels([layer_Gbargna_all_community_1]);
+        var i = 0;
+        layer_Final_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['g_id'] !== null?String('<div style="color: #ffffff; font-size: 6pt; font-weight: bold; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['g_id']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Final_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_Final_1,layer_Gbargna_all_community_2]);
         map.on("zoomend", function(){
-            resetLabels([layer_Gbargna_all_community_1]);
+            resetLabels([layer_Final_1,layer_Gbargna_all_community_2]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Gbargna_all_community_1]);
+            resetLabels([layer_Final_1,layer_Gbargna_all_community_2]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Gbargna_all_community_1]);
+            resetLabels([layer_Final_1,layer_Gbargna_all_community_2]);
         });
         </script>
     </body>
